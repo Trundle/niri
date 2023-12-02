@@ -1704,6 +1704,12 @@ impl State {
                     }
                 }
             }
+            Action::SwapWorkspace(idx) => {
+                let idx = idx.saturating_sub(1) as usize;
+                self.niri.layout.swap_workspace(idx);
+                // FIXME: granular
+                self.niri.queue_redraw_all();
+            }
         }
     }
 
