@@ -1251,6 +1251,7 @@ pub enum Action {
     MoveWorkspaceToMonitorRight,
     MoveWorkspaceToMonitorDown,
     MoveWorkspaceToMonitorUp,
+    SwapWorkspace(#[knuffel(argument)] u8),
 }
 
 impl From<niri_ipc::Action> for Action {
