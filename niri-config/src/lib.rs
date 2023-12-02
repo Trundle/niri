@@ -1981,6 +1981,7 @@ pub enum Action {
     UnsetWindowUrgent(u64),
     #[knuffel(skip)]
     LoadConfigFile,
+    SwapWorkspace(#[knuffel(argument)] u8),
 }
 
 impl From<niri_ipc::Action> for Action {

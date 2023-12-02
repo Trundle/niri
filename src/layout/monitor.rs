@@ -801,6 +801,29 @@ impl<W: LayoutElement> Monitor<W> {
         self.add_column(new_idx, column, activate);
     }
 
+    pub fn swap_workspace(&mut self, idx: usize) {
+        let source_workspace_idx = self.active_workspace_idx;
+        let new_idx = min(idx, self.workspaces.len() - 1);
+        if new_idx == source_workspace_idx {
+            return;
+        }
+
+        self.workspaces.swap(source_workspace_idx, new_idx);
+
+        if new_idx == self.workspaces.len() - 1 || source_workspace_idx == self.workspaces.len() - 1
+        {
+            // Insert a new empty workspace.
+            self.add_workspace_bottom();
+        }
+
+        self.activate_workspace(new_idx);
+
+        // Don't animate this action.
+        self.workspace_switch = None;
+
+        self.clean_up_workspaces();
+    }
+
     pub fn switch_workspace_up(&mut self) {
         let new_idx = match &self.workspace_switch {
             // During a DnD scroll, select the prev apparent workspace.

@@ -2126,6 +2126,11 @@ impl State {
                     watcher.load_config();
                 }
             }
+            Action::SwapWorkspace(idx) => {
+                let idx = idx.saturating_sub(1) as usize;
+                self.niri.layout.swap_workspace(idx);
+                self.niri.queue_redraw_all();
+            }
         }
     }
 
