@@ -1345,6 +1345,7 @@ pub enum Action {
         x: PositionChange,
         y: PositionChange,
     },
+    SwapWorkspace(#[knuffel(argument)] u8),
 }
 
 impl From<niri_ipc::Action> for Action {
