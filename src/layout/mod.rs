@@ -2145,6 +2145,13 @@ impl<W: LayoutElement> Layout<W> {
         self.move_column_to_workspace(idx);
     }
 
+    pub fn swap_workspace(&mut self, idx: usize) {
+        let Some(monitor) = self.active_monitor() else {
+            return;
+        };
+        monitor.swap_workspace(idx);
+    }
+
     pub fn switch_workspace_up(&mut self) {
         let Some(monitor) = self.active_monitor() else {
             return;

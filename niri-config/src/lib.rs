@@ -1631,6 +1631,7 @@ pub enum Action {
     ToggleWindowRuleOpacity,
     #[knuffel(skip)]
     ToggleWindowRuleOpacityById(u64),
+    SwapWorkspace(#[knuffel(argument)] u8),
 }
 
 impl From<niri_ipc::Action> for Action {
